@@ -3,8 +3,7 @@
 #include <stdarg.h>
 
 int _printf(const char *format, ...)
-{
-const char *ptr;
+{ const char *ptr;
 int count = 0;
 
 va_list args;
@@ -12,8 +11,7 @@ va_start(args, format);
 ptr = format;
 while (*ptr)
 {
-if (*ptr == '%')
-{
+if (*ptr == '%'){
 ptr++;
 switch (*ptr)
 {
@@ -22,8 +20,7 @@ case 'c':
 int c = va_arg(args, int);
 _putchar(c);
 count++;
-break;
-}
+break;}
 case 's':
 {
 char *s = va_arg(args, char *);
@@ -38,8 +35,7 @@ case '%':
 {
 _putchar('%');
 count++;
-break;
-}
+break;}
 }
 }
 else
