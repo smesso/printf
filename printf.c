@@ -21,27 +21,27 @@ ptr++;
 switch (*ptr) {
 case 'c': {
 int c = va_arg(args, int);
-putchar(c);
+_putchar(c);
 count++;
 break;
 }
 case 's': {
 char *s = va_arg(args, char *);
 while (*s) {
-putchar(*s++);
+_putchar(*s++);
 count++;
 }
 break;
 }
 case '%': {
-putchar('%');
+_putchar('%');
 count++;
 break;
 }
 }
 } else 
 {
-putchar(*ptr);
+_putchar(*ptr);
 count++;
 }
 ptr++;
