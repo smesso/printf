@@ -8,42 +8,46 @@
  *
  * Return: Number of characters printed (excluding the null byte)
  */
-int _printf(const char *format, ...)
-{
+int _printf(const char *format, ...) {
+const char *ptr;
+int count = 0;  /* Move the declaration to the beginning */
+
 va_list args;
 va_start(args, format);
 
-int count = 0;
-const char *ptr = format;
+ptr = format;
 
-while (*ptr)
-{
-if (*ptr == '%' && ++ptr)
-{
-switch (*ptr++)
-{
-case 'c':
-count += _putchar(va_arg(args, int));
+while (*ptr) {
+if (*ptr == '%') {
+ptr++;
+switch (*ptr) {
+case 'c': {
+int c = va_arg(args, int);
+putchar(c);
+count++;
 break;
-case 's':
-{
+}
+case 's': {
 char *s = va_arg(args, char *);
-while (*s)
-count += _putchar(*s++);
+while (*s) {
+putchar(*s++);
+count++;
+}
 break;
 }
-case '%':
-count += _putchar('%');
+case '%': {
+putchar('%');
+count++;
 break;
 }
 }
-else
-{
-count += _putchar(*ptr++);
+} else {
+putchar(*ptr);
+count++;
 }
+ptr++;
 }
 
 va_end(args);
-return (count);
+return (count);
 }
-
